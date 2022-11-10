@@ -25,6 +25,10 @@ class RESTClient {
     try await doRequest(withEndpoint: "/movie/upcoming", queryParameters: ["page" : "\(pageNumber)"])
   }
   
+  static func getMoviewDetail(id: Int) async throws -> MovieDetailResponse {
+    try await doRequest(withEndpoint: "/movie/\(id)")
+  }
+  
   private static func doRequest<T: Decodable>(withEndpoint endpoint: String, queryParameters: [String: String] = [:]) async throws -> T {
     guard var urlComponents = URLComponents(string: baseURLString) else {
       throw NetworkingError.invalidURL
