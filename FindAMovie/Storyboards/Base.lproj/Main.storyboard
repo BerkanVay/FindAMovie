@@ -22,8 +22,8 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gY3-CL-LEg">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="898"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="gWb-U9-Xaf">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="726"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="gWb-U9-Xaf">
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="705.66666666666663"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gde-0u-JHc" userLabel="Header">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="293.66666666666669"/>
@@ -83,6 +83,10 @@
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="qBx-Dq-XsQ"/>
+                                                            <outlet property="delegate" destination="BYZ-38-t0r" id="jRe-HE-OHv"/>
+                                                        </connections>
                                                     </collectionView>
                                                     <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="jwW-3p-FQz">
                                                         <rect key="frame" x="0.0" y="267.66666666666669" width="430" height="26"/>
@@ -104,53 +108,71 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sLZ-CT-0Pr" customClass="ContentSizedTableView" customModule="FindAMovie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="293.66666666666674" width="430" height="432.33333333333326"/>
+                                                <rect key="frame" x="0.0" y="293.66666666666669" width="430" height="412.00000000000006"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="cell" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="136" id="bBT-Pe-umP">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="136" id="bBT-Pe-umP" customClass="MainTableViewCell" customModule="FindAMovie" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="50" width="430" height="136"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bBT-Pe-umP" id="rXW-C5-Gbv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="430" height="136"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="399.66666666666669" height="136"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="square.and.arrow.up.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-nI-Cgz">
-                                                                    <rect key="frame" x="36" y="26.000000000000007" width="104" height="82.666666666666686"/>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.app" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-nI-Cgz">
+                                                                    <rect key="frame" x="16" y="17.666666666666657" width="104" height="101"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="104" id="DZ2-FC-bdi"/>
                                                                         <constraint firstAttribute="height" constant="104" id="Z8M-kf-fff"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15.06.2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbg-RL-SEh">
-                                                                    <rect key="frame" x="376" y="104" width="42" height="16"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CqI-2P-Mi2">
-                                                                    <rect key="frame" x="148" y="35" width="41.333333333333336" height="48.666666666666664"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CqI-2P-Mi2">
+                                                                    <rect key="frame" x="127.99999999999999" y="24.000000000000004" width="255.66666666666663" height="57.333333333333343"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrc-rB-Kxi">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrc-rB-Kxi">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="255.66666666666666" height="18"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRX-1A-Tvf">
-                                                                            <rect key="frame" x="0.0" y="28.333333333333336" width="41.333333333333336" height="20.333333333333336"/>
-                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                            <nil key="textColor"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SRX-1A-Tvf">
+                                                                            <rect key="frame" x="0.0" y="26" width="255.66666666666666" height="31.333333333333329"/>
+                                                                            <string key="text">Long
+Description</string>
+                                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
+                                                                            <color key="textColor" name="Table View Cell Long Description and Date Text"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15.06.2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qla-7y-Prk">
+                                                                    <rect key="frame" x="320" y="105.66666666666667" width="63.666666666666686" height="14.333333333333329"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                                    <color key="textColor" name="Table View Cell Long Description and Date Text"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="qkC-nI-Cgz" firstAttribute="leading" secondItem="rXW-C5-Gbv" secondAttribute="leading" constant="16" id="FAk-56-zBt"/>
+                                                                <constraint firstItem="qkC-nI-Cgz" firstAttribute="top" secondItem="rXW-C5-Gbv" secondAttribute="top" constant="16" id="ICw-DI-Nm6"/>
+                                                                <constraint firstAttribute="bottom" secondItem="qla-7y-Prk" secondAttribute="bottom" constant="16" id="J6i-Fz-3gw"/>
+                                                                <constraint firstAttribute="trailing" secondItem="CqI-2P-Mi2" secondAttribute="trailing" constant="16" id="Lgp-tC-X2s"/>
+                                                                <constraint firstItem="CqI-2P-Mi2" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="qkC-nI-Cgz" secondAttribute="bottom" constant="8" id="W34-ab-VyA"/>
+                                                                <constraint firstItem="CqI-2P-Mi2" firstAttribute="top" secondItem="qkC-nI-Cgz" secondAttribute="top" constant="8" id="YwD-d1-zpc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="qkC-nI-Cgz" secondAttribute="bottom" constant="16" id="kFT-2u-Hmw"/>
+                                                                <constraint firstAttribute="trailing" secondItem="qla-7y-Prk" secondAttribute="trailing" constant="16" id="y5A-Um-tIx"/>
+                                                                <constraint firstItem="CqI-2P-Mi2" firstAttribute="leading" secondItem="qkC-nI-Cgz" secondAttribute="trailing" constant="8" id="ywO-Op-Ou2"/>
+                                                            </constraints>
                                                         </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="movieDescriptionLabel" destination="SRX-1A-Tvf" id="da6-yz-73N"/>
+                                                            <outlet property="movieTitleLabel" destination="Yrc-rB-Kxi" id="c6t-rQ-K6a"/>
+                                                            <outlet property="posterImageView" destination="qkC-nI-Cgz" id="nAW-fm-ebA"/>
+                                                        </connections>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <connections>
                                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="jUh-Rq-VP2"/>
+                                                    <outlet property="delegate" destination="BYZ-38-t0r" id="BwL-jX-EKt"/>
                                                 </connections>
                                             </tableView>
                                         </subviews>
@@ -178,6 +200,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="vW8-dD-7F6"/>
                     <connections>
+                        <outlet property="contentTableView" destination="sLZ-CT-0Pr" id="pZW-4t-uKY"/>
                         <outlet property="headerCollectionView" destination="zGF-qo-sAe" id="gaa-Qw-7Bp"/>
                         <outlet property="pageControl" destination="jwW-3p-FQz" id="Ct8-iW-U24"/>
                     </connections>
@@ -206,7 +229,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
+        <image name="xmark.app" catalog="system" width="128" height="114"/>
         <namedColor name="Header Content Background">
             <color red="0.0" green="0.0" blue="0.0" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -215,6 +238,9 @@
         </namedColor>
         <namedColor name="Page Control Tint">
             <color red="1" green="1" blue="1" alpha="0.30000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Table View Cell Long Description and Date Text">
+            <color red="0.55294117647058827" green="0.59999999999999998" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

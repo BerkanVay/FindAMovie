@@ -10,60 +10,35 @@ import UIKit
 class MainViewController: UIViewController {
   @IBOutlet private weak var headerCollectionView: UICollectionView!
   @IBOutlet private weak var pageControl: UIPageControl!
+  @IBOutlet private weak var contentTableView: ContentSizedTableView!
   
-  enum HeaderSection: Int, CaseIterable {
-      case general
-  }
+  private let viewModel = MainViewModel()
   
-  private lazy var dataSource = UICollectionViewDiffableDataSource<HeaderSection, MoviePaginationResponse.Movie>(collectionView: headerCollectionView) { [weak self] collectionView, indexPath, movie in
-    guard
-      let self,
-      let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MainHeaderCollectionViewCell
-    else {
-      return UICollectionViewCell()
-    }
-     
-    cell.layoutSubviews()
-    cell.configure(withMovie: movie)
-    
-    return cell
-  }
-  
-  private var headerMovies: [MoviePaginationResponse.Movie] = []
-
   override var preferredStatusBarStyle: UIStatusBarStyle {
-      return .lightContent
+    .lightContent
   }
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    registerHeaderDataSource()
-    registerHeaderDelegate()
-    
-    Task {
-      let response = try! await RESTClient.getNowPlaying()
-      
-      let movies = response.results
-      
-      DispatchQueue.main.async {
-        var snapshot = NSDiffableDataSourceSnapshot<HeaderSection, MoviePaginationResponse.Movie>()
-        snapshot.appendSections([.general])
-        snapshot.appendItems(Array(movies.prefix(5)), toSection: .general)
-        
-        self.dataSource.apply(snapshot)
-      }
-    }
+    viewModel.delegate = self
   }
 }
 
-extension MainViewController {
-  private func registerHeaderDataSource() {
-    headerCollectionView.dataSource = dataSource
+extension MainViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    viewModel.nowPlayings.count
   }
   
-  private func registerHeaderDelegate() {
-    headerCollectionView.delegate = self
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? MainHeaderCollectionViewCell else {
+      return UICollectionViewCell()
+    }
+    
+    cell.layoutSubviews()
+    cell.configure(withMovie: viewModel.nowPlayings[indexPath.row])
+    
+    return cell
   }
 }
 
@@ -85,13 +60,32 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 
 extension MainViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    31
+    viewModel.upcomings.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = UITableViewCell()
-    cell.textLabel?.text = "sea"
-    
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? MainTableViewCell else {
+      return UITableViewCell()
+    }
+    cell.configure(withMovie: viewModel.upcomings[indexPath.row])
     return cell
+  }
+}
+
+extension MainViewController: UITableViewDelegate {
+  
+}
+
+extension MainViewController: MainViewModelDelegate {
+  func shouldReloadNowPlayings() {
+    DispatchQueue.main.async {
+      self.headerCollectionView.reloadData()
+    }
+  }
+  
+  func shouldReloadUpcomings() {
+    DispatchQueue.main.async {
+      self.contentTableView.reloadData()
+    }
   }
 }
