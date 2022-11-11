@@ -8,23 +8,21 @@
 import UIKit
 
 class MainTableViewCell: UITableViewCell {
+  private static let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "dd.MM.YYYY"
+    return dateFormatter
+  }()
+  
   @IBOutlet private weak var posterImageView: UIImageView!
   @IBOutlet private weak var movieTitleLabel: UILabel!
   @IBOutlet private weak var movieDescriptionLabel: UILabel!
-  
-  private var movie: MoviePaginationResponse.Movie?
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-  }
+  @IBOutlet private weak var movieReleaseDateLabel: UILabel!
   
   func configure(withMovie movie: MoviePaginationResponse.Movie) {
     ImageFetcher.load(toImageView: posterImageView, path: movie.posterPath)
     movieTitleLabel.text = movie.title
     movieDescriptionLabel.text = movie.overview
+    movieReleaseDateLabel.text = Self.dateFormatter.string(from: movie.releaseDate)
   }
 }

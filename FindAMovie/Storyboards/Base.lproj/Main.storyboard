@@ -165,6 +165,7 @@ Description</string>
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="movieDescriptionLabel" destination="SRX-1A-Tvf" id="da6-yz-73N"/>
+                                                            <outlet property="movieReleaseDateLabel" destination="qla-7y-Prk" id="lbY-aW-zee"/>
                                                             <outlet property="movieTitleLabel" destination="Yrc-rB-Kxi" id="c6t-rQ-K6a"/>
                                                             <outlet property="posterImageView" destination="qkC-nI-Cgz" id="nAW-fm-ebA"/>
                                                         </connections>
