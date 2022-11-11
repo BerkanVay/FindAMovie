@@ -34,13 +34,13 @@ class RESTClient {
       throw NetworkingError.invalidURL
     }
     
-    urlComponents.path = endpoint
+    urlComponents.path += endpoint
     
     urlComponents.queryItems = queryParameters.map { (key, value) in
       URLQueryItem(name: key, value: value)
     }
     
-    urlComponents.queryItems?.append(URLQueryItem(name: "apikey", value: apiKey))
+    urlComponents.queryItems?.append(URLQueryItem(name: "api_key", value: apiKey))
     
     guard let url = urlComponents.url else {
       throw NetworkingError.invalidURL
