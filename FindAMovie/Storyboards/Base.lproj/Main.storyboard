@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="898"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="gWb-U9-Xaf">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="705.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="705.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gde-0u-JHc" userLabel="Header">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="293.66666666666669"/>
@@ -108,7 +108,7 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sLZ-CT-0Pr" customClass="ContentSizedTableView" customModule="FindAMovie" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="293.66666666666669" width="430" height="412.00000000000006"/>
+                                                <rect key="frame" x="0.0" y="293.66666666666663" width="430" height="411.66666666666663"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="136" id="bBT-Pe-umP" customClass="MainTableViewCell" customModule="FindAMovie" customModuleProvider="target">
@@ -118,7 +118,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="399.66666666666669" height="136"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.app" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-nI-Cgz">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.app" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qkC-nI-Cgz">
                                                                     <rect key="frame" x="16" y="17.666666666666657" width="104" height="101"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="104" id="DZ2-FC-bdi"/>
@@ -188,6 +188,9 @@ Description</string>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="VVB-h7-sYT"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="FIs-1W-whN"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="TMh-YB-Sbo"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -204,6 +207,7 @@ Description</string>
                         <outlet property="contentTableView" destination="sLZ-CT-0Pr" id="pZW-4t-uKY"/>
                         <outlet property="headerCollectionView" destination="zGF-qo-sAe" id="gaa-Qw-7Bp"/>
                         <outlet property="pageControl" destination="jwW-3p-FQz" id="Ct8-iW-U24"/>
+                        <outlet property="scrollView" destination="gY3-CL-LEg" id="SLJ-bC-ml0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -20,6 +20,7 @@ class MainTableViewCell: UITableViewCell {
   @IBOutlet private weak var movieReleaseDateLabel: UILabel!
   
   func configure(withMovie movie: MoviePaginationResponse.Movie) {
+    posterImageView.layer.cornerRadius = 10
     ImageFetcher.load(toImageView: posterImageView, path: movie.posterPath)
     movieTitleLabel.text = movie.title
     movieDescriptionLabel.text = movie.overview

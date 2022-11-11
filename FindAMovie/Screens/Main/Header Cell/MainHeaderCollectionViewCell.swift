@@ -11,17 +11,15 @@ class MainHeaderCollectionViewCell: UICollectionViewCell {
   @IBOutlet private weak var backgroundImageView: UIImageView!
   @IBOutlet private weak var titleLabel: UILabel!
   @IBOutlet private weak var overviewLabel: UILabel!
-  
-  private var movie: MoviePaginationResponse.Movie?
 }
 
 extension MainHeaderCollectionViewCell {
   func configure(withMovie movie: MoviePaginationResponse.Movie) {
-    self.movie = movie
-    
     ImageFetcher.load(toImageView: backgroundImageView, path: movie.backDropPath)
     
-    titleLabel.text = "\(movie.title) (xxxx)"
+    let dateComponents = Calendar.current.dateComponents([.year], from: movie.releaseDate)
+    titleLabel.text = "\(movie.title) (\(dateComponents.year ?? 0))"
+    
     overviewLabel.text = movie.overview
   }
 }

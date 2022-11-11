@@ -182,9 +182,9 @@
 			children = (
 				DABADC44291D637E00E1C4A7 /* Header Cell */,
 				DACE499F291EE2E7002B78D0 /* Table View Cell */,
+				DABADC42291D475300E1C4A7 /* MainViewController.swift */,
 				DACE49A2291EE4FE002B78D0 /* MainViewModel.swift */,
 				DACE49A4291EE5BB002B78D0 /* MainViewModelDelegate.swift */,
-				DABADC42291D475300E1C4A7 /* MainViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

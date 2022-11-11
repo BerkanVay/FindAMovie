@@ -18,15 +18,15 @@ struct MoviePaginationResponse: Decodable {
     }()
     
     let id: Int
-    let backDropPath: String
-    let posterPath: String
+    let backDropPath: String?
+    let posterPath: String?
     let title: String
     let overview: String
     private let releaseDateString: String
     let voteAverage: Double
     
     var releaseDate: Date {
-      return Self.dateFormatter.date(from: releaseDateString) ?? Date()
+      Self.dateFormatter.date(from: releaseDateString) ?? Date()
     }
     
     enum CodingKeys: String, CodingKey {

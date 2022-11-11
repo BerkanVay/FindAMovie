@@ -11,13 +11,17 @@ import Kingfisher
 class ImageFetcher {
   private static let baseURLString = "https://image.tmdb.org/t/p/w500/"
   
-  static func load(toImageView imageView: UIImageView, path: String) {
-    guard let baseURL = URL(string: baseURLString + path) else {
-      // TODO: Handle the error.
+  static func load(toImageView imageView: UIImageView, path: String?) {
+    if let path {
+      guard let baseURL = URL(string: baseURLString + path) else {
+        // TODO: Handle the error.
+        
+        return
+      }
       
-      return
+      imageView.kf.setImage(with: baseURL)
+    } else {
+      imageView.image = nil
     }
-    
-    imageView.kf.setImage(with: baseURL)
   }
 }

@@ -15,30 +15,44 @@ class MainViewModel {
       delegate?.shouldReloadNowPlayings()
     }
   }
+  
   private(set) var upcomings: [MoviePaginationResponse.Movie] = [] {
     didSet {
       delegate?.shouldReloadUpcomings()
     }
   }
+  
   private var pageNumber = 1
+  private var isBusy = false
+  
+  init() {
+    Task {
+      await reload()
+    }
+  }
+  
+  func fetchNextUpcomingPage() async {
+    if isBusy {
+      return
+    }
+    
+    isBusy = true
+    pageNumber += 1
+    upcomings += try! await RESTClient.getUpcomings(pageNumber: pageNumber).results
+    isBusy = false
+  }
+  
+  func reload() async {
+    // Execute the task in parallel
+    _ = await [fetchNowPlaying(), fetchUpcomings()]
+  }
   
   private func fetchNowPlaying() async {
     nowPlayings = Array(try! await RESTClient.getNowPlaying().results.prefix(5))
   }
   
-  func fetchUpcomings() async {
+  private func fetchUpcomings() async {
     pageNumber = 1
     upcomings = try! await RESTClient.getUpcomings(pageNumber: pageNumber).results
-  }
-  
-  func fetchNextUpcomingPage() async {
-    pageNumber += 1
-    upcomings += try! await RESTClient.getUpcomings(pageNumber: pageNumber).results
-  }
-  
-  init() {
-    Task {
-      await [fetchNowPlaying(), fetchUpcomings()]
-    }
   }
 }
