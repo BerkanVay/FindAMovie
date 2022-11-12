@@ -43,7 +43,7 @@ class MainViewModel {
   }
   
   func reload() async {
-    // Execute the task in parallel
+    // Execute tasks in parallel
     _ = await [fetchNowPlaying(), fetchUpcomings()]
   }
   

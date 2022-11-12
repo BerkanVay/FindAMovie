@@ -27,6 +27,28 @@ class MainViewController: UIViewController {
     createRefreshControl()
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    navigationController?.navigationBar.isHidden = false
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    navigationController?.navigationBar.isHidden = true
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    if let indexPathForSelectedRow = contentTableView.indexPathForSelectedRow {
+      contentTableView.deselectRow(at: indexPathForSelectedRow, animated: true)
+    }
+  }
+}
+
+extension MainViewController {
   private func createRefreshControl() {
     let refreshControl = UIRefreshControl()
     refreshControl.addTarget(self, action: #selector(refreshHappened), for: .valueChanged)
@@ -53,7 +75,6 @@ extension MainViewController: UICollectionViewDataSource {
       return UICollectionViewCell()
     }
     
-    cell.layoutSubviews()
     cell.configure(withMovie: viewModel.nowPlayings[indexPath.row])
     
     return cell
@@ -68,12 +89,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   ) -> CGSize {
     collectionView.bounds.size
   }
-  
-  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    let index = Int(scrollView.contentOffset.x / headerCollectionView.bounds.width)
-    
-    pageControl.currentPage = index
-  }
 }
 
 extension MainViewController: UITableViewDataSource {
@@ -85,6 +100,7 @@ extension MainViewController: UITableViewDataSource {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? MainTableViewCell else {
       return UITableViewCell()
     }
+    
     cell.configure(withMovie: viewModel.upcomings[indexPath.row])
     
     return cell
@@ -92,7 +108,23 @@ extension MainViewController: UITableViewDataSource {
 }
 
 extension MainViewController: UITableViewDelegate {
-  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showDetailFromTableView" {
+      guard
+        let destination = segue.destination as? DetailViewController,
+        let selectedIndex = self.contentTableView.indexPathForSelectedRow
+      else { return }
+      
+      destination.configure(withMovieId: viewModel.upcomings[selectedIndex.row].id)
+    } else if segue.identifier == "showDetailFromCollectionView" {
+      guard
+        let destination = segue.destination as? DetailViewController,
+        let selectedIndex = self.headerCollectionView.indexPathsForSelectedItems?.first?.row
+      else { return }
+      
+      destination.configure(withMovieId: viewModel.nowPlayings[selectedIndex].id)
+    }
+  }
 }
 
 extension MainViewController: MainViewModelDelegate {
@@ -110,7 +142,19 @@ extension MainViewController: MainViewModelDelegate {
 }
 
 extension MainViewController {
+  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    // We only want to handle the collection view
+    guard scrollView == headerCollectionView else { return }
+    
+    let index = Int(scrollView.contentOffset.x / headerCollectionView.bounds.width)
+    
+    pageControl.currentPage = index
+  }
+  
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    // We don't want to handle collection view's scroll view
+    guard scrollView == self.scrollView else { return }
+    
     if scrollView.contentSize.height - (scrollView.bounds.height + scrollView.contentOffset.y) < 250 {
       Task {
         await viewModel.fetchNextUpcomingPage()

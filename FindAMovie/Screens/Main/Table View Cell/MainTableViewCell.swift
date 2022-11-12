@@ -22,7 +22,10 @@ class MainTableViewCell: UITableViewCell {
   func configure(withMovie movie: MoviePaginationResponse.Movie) {
     posterImageView.layer.cornerRadius = 10
     ImageFetcher.load(toImageView: posterImageView, path: movie.posterPath)
-    movieTitleLabel.text = movie.title
+    
+    let dateComponents = Calendar.current.dateComponents([.year], from: movie.releaseDate)
+    
+    movieTitleLabel.text = "\(movie.title) (\(dateComponents.year ?? 0))"
     movieDescriptionLabel.text = movie.overview
     movieReleaseDateLabel.text = Self.dateFormatter.string(from: movie.releaseDate)
   }

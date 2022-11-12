@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6C9FDE7B42675F15D3322130 /* Pods_FindAMovieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EC3694667A55EB31A35D2 /* Pods_FindAMovieTests.framework */; };
 		D5D5A6296FA01E05093CFED5 /* Pods_FindAMovie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABBAF258AC4973BB2F6BE6EF /* Pods_FindAMovie.framework */; };
+		DA1E233E291F95E100AFEAD4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1E233D291F95E100AFEAD4 /* DetailViewController.swift */; };
+		DA1E2340291F960E00AFEAD4 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1E233F291F960E00AFEAD4 /* DetailViewModel.swift */; };
+		DA1E2342291F96E700AFEAD4 /* DetailViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1E2341291F96E700AFEAD4 /* DetailViewModelDelegate.swift */; };
+		DA1E2344291FBD0200AFEAD4 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1E2343291FBD0200AFEAD4 /* CustomNavigationController.swift */; };
 		DA21BE4B291D75D1009CF3B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21BE48291D75D1009CF3B4 /* AppDelegate.swift */; };
 		DA21BE4D291D75D2009CF3B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA21BE4A291D75D1009CF3B4 /* SceneDelegate.swift */; };
 		DA846E9F291D6CCD0083D991 /* ImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA846E9E291D6CCD0083D991 /* ImageFetcher.swift */; };
@@ -44,6 +48,10 @@
 		42C74CB05C5E19C3975134C6 /* Pods-FindAMovieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindAMovieTests.debug.xcconfig"; path = "Target Support Files/Pods-FindAMovieTests/Pods-FindAMovieTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ABBAF258AC4973BB2F6BE6EF /* Pods_FindAMovie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindAMovie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50C2DA9FAB9FF3750B8A22A /* Pods-FindAMovie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindAMovie.debug.xcconfig"; path = "Target Support Files/Pods-FindAMovie/Pods-FindAMovie.debug.xcconfig"; sourceTree = "<group>"; };
+		DA1E233D291F95E100AFEAD4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DA1E233F291F960E00AFEAD4 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		DA1E2341291F96E700AFEAD4 /* DetailViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelDelegate.swift; sourceTree = "<group>"; };
+		DA1E2343291FBD0200AFEAD4 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
 		DA21BE48291D75D1009CF3B4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "FindAMovie/Supporting Files/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		DA21BE49291D75D1009CF3B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "FindAMovie/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		DA21BE4A291D75D1009CF3B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = "FindAMovie/Supporting Files/SceneDelegate.swift"; sourceTree = SOURCE_ROOT; };
@@ -98,6 +106,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		DA1E233C291F95C300AFEAD4 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				DA1E233D291F95E100AFEAD4 /* DetailViewController.swift */,
+				DA1E233F291F960E00AFEAD4 /* DetailViewModel.swift */,
+				DA1E2341291F96E700AFEAD4 /* DetailViewModelDelegate.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		DA846E9D291D6CB90083D991 /* Image Fetcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +155,9 @@
 		DABADC36291D2D8E00E1C4A7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				DA1E2343291FBD0200AFEAD4 /* CustomNavigationController.swift */,
 				DABADC45291D638800E1C4A7 /* Main */,
+				DA1E233C291F95C300AFEAD4 /* Detail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -424,14 +444,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA1E233E291F95E100AFEAD4 /* DetailViewController.swift in Sources */,
 				DABADC3E291D393300E1C4A7 /* MovieDetailResponse.swift in Sources */,
+				DA1E2342291F96E700AFEAD4 /* DetailViewModelDelegate.swift in Sources */,
 				DA846E9F291D6CCD0083D991 /* ImageFetcher.swift in Sources */,
+				DA1E2344291FBD0200AFEAD4 /* CustomNavigationController.swift in Sources */,
 				DACE49A5291EE5BB002B78D0 /* MainViewModelDelegate.swift in Sources */,
 				DABADC39291D30AD00E1C4A7 /* MoviePaginationResponse.swift in Sources */,
 				DABADC48291D63B300E1C4A7 /* MainHeaderCollectionViewCell.swift in Sources */,
 				DACE49A1291EE30E002B78D0 /* MainTableViewCell.swift in Sources */,
 				DA21BE4B291D75D1009CF3B4 /* AppDelegate.swift in Sources */,
 				DABADC43291D475300E1C4A7 /* MainViewController.swift in Sources */,
+				DA1E2340291F960E00AFEAD4 /* DetailViewModel.swift in Sources */,
 				DAC23AF3291E6EC400E49284 /* ContentSizedTableView.swift in Sources */,
 				DABADC35291D2D7E00E1C4A7 /* RESTClient.swift in Sources */,
 				DA21BE4D291D75D2009CF3B4 /* SceneDelegate.swift in Sources */,
